@@ -1,3 +1,10 @@
+import {
+  drawIsometric,
+  drawIsoMenu,
+  loadPhotoreal,
+  photos,
+} from "./isometric.js";
+import { GameControls } from "./controller.js";
 import { RecoveredAudio } from "./audio.js";
 import { World } from "./world.js";
 import { composeView, viewPixels } from "./renderer.js";
@@ -19,16 +26,12 @@ const [title, hud] = await Promise.all([
 ]);
 const status = document.querySelector("#status");
 status.textContent =
-  "Recovery milestone 0.1 — full game fidelity is still in progress.";
+  "Recovery milestone 0.2 — full game fidelity is still in progress.";
 const audio = new RecoveredAudio(
   await (await fetch("assets/menu-music.json")).json(),
 );
 audio.menu(true);
-let playing = false,
-  selection = 0,
-  keys = new Set(),
-  sound = false,
-  previousMenu = null;
+let controls;
 function text(str, x, y, ink = "#000", paper = null) {
   for (const ch of str) {
     if (ch === "\n") {
@@ -50,130 +53,6 @@ function text(str, x, y, ink = "#000", paper = null) {
     x += 6;
   }
 }
-function tone(frequency = 700) {
-  audio.beep(frequency === 80);
-}
-function begin() {
-  world.reset();
-  audio.menu(false);
-  playing = true;
-  selection = 0;
-  keys.clear();
-  canvas.focus();
-  draw();
-}
-function selected() {
-  if (world.menu) {
-    let option = world.menu.options[selection];
-    option?.run();
-    selection = 0;
-    tone();
-  }
-}
-function action(key, repeat = false) {
-  if (!playing) {
-    if (key === "6" || key === "5" || key === " " || key === "enter") begin();
-    return;
-  }
-  if (world.menu) {
-    if (key === "escape") {
-      world.menu = null;
-      return;
-    }
-    if (key === "q" || key === "arrowup")
-      selection = Math.max(0, selection - 1);
-    if (key === "a" || key === "arrowdown")
-      selection = Math.min(world.menu.options.length - 1, selection + 1);
-    if ((key === " " || key === "enter") && !repeat) selected();
-    return;
-  }
-  if (!repeat) {
-    if (key === "1") world.views[0] = (world.views[0] + 4) & 15;
-    if (key === "2") world.views[1] = (world.views[1] + 4) & 15;
-    if (key === "f") {
-      world.fartAction();
-      tone(80, 0.12);
-    }
-  }
-  if (key === " " || key === "enter") {
-    world.interact();
-    selection = 0;
-    tone();
-  }
-}
-const directionKeys = {
-  q: 2,
-  arrowup: 2,
-  a: 0,
-  arrowdown: 0,
-  p: 1,
-  arrowright: 1,
-  o: 3,
-  arrowleft: 3,
-};
-function press(key, repeat = false) {
-  keys.add(key);
-  action(key, repeat);
-  draw();
-}
-window.addEventListener("keydown", (e) => {
-  let k = e.key.toLowerCase();
-  if (
-    [
-      " ",
-      "enter",
-      "escape",
-      "1",
-      "2",
-      "f",
-      "q",
-      "a",
-      "o",
-      "p",
-      "6",
-      "5",
-      ...Object.keys(directionKeys),
-    ].includes(k)
-  ) {
-    e.preventDefault();
-    press(k, e.repeat);
-  }
-});
-window.addEventListener("keyup", (e) => keys.delete(e.key.toLowerCase()));
-window.addEventListener("blur", () => keys.clear());
-document.querySelector("#start").onclick = begin;
-document.querySelector("#restart").onclick = begin;
-document.querySelector("#sound").onclick = (e) => {
-  sound = !sound;
-  audio.enable(sound);
-  e.target.textContent = sound ? "Sound on" : "Sound off";
-  e.target.setAttribute("aria-pressed", String(sound));
-  tone();
-};
-for (const button of document.querySelectorAll("[data-key]")) {
-  button.addEventListener("pointerdown", (e) => {
-    e.preventDefault();
-    button.setPointerCapture(e.pointerId);
-    press(button.dataset.key);
-  });
-  for (const type of ["pointerup", "pointercancel", "lostpointercapture"])
-    button.addEventListener(type, () => keys.delete(button.dataset.key));
-}
-canvas.addEventListener("click", (e) => {
-  const bounds = canvas.getBoundingClientRect(),
-    y = ((e.clientY - bounds.top) * 192) / bounds.height;
-  if (!playing) {
-    begin();
-    return;
-  }
-  if (world.menu && y >= 80 && y < 128) {
-    let first = Math.max(0, selection - 4),
-      row = Math.floor((y - 80) / 8);
-    selection = Math.min(first + row, world.menu.options.length - 1);
-    selected();
-    draw();
-  }
-});
 function meterShape(bytes, x, y) {
   for (let row = 0; row < 16; row++)
     for (let col = 0; col < 16; col++) {
@@ -215,9 +94,56 @@ function drawMeters() {
         if (glyph[y] & (128 >> x)) ctx.fillRect(104 + i * 8 + x, 152 + y, 1, 1);
   }
 }
-function draw() {
-  ctx.drawImage(playing ? hud : title, 0, 0);
-  if (!playing) return;
+function draw(frameTime) {
+  if (typeof frameTime !== "number") controls?.sync();
+  const iso = controls?.presentation === "isometric";
+  const width = iso ? 1024 : 256,
+    height = iso ? 768 : 192;
+  if (canvas.width !== width) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(controls?.playing ? hud : title, 0, 0, width, height);
+  const presentationStatus = document.querySelector("#presentation-status");
+  if (controls?.art === "photoreal" && iso) {
+    loadPhotoreal(draw);
+    presentationStatus.textContent = photos.failed
+      ? "Photoreal assets unavailable — original geometry shown."
+      : !photos.loaded
+        ? "Loading photoreal hallway assets…"
+        : world.room.id === 6
+          ? "Photoreal hallway pilot · inferred geometry · shared original game state"
+          : "Photoreal characters · original/proxy furniture in this room · coverage incomplete";
+  } else
+    presentationStatus.textContent = iso
+      ? "Unified world view · inferred elevations · original collision footprints"
+      : controls?.art === "photoreal"
+        ? "Photoreal pilot is available in Isometric view; original split artwork retained."
+        : "";
+  if (!controls?.playing) return;
+  if (iso) {
+    ctx.imageSmoothingEnabled = controls.art === "photoreal";
+    drawIsometric(ctx, world, data, {
+      photoreal: controls.art === "photoreal",
+      visual: controls.paused
+        ? controls.frozenVisual
+        : controls.motion.sample(
+            typeof frameTime === "number" ? frameTime : performance.now(),
+          ),
+    });
+    if (world.menu) drawIsoMenu(ctx, world.menu, controls.selection);
+    if (controls.paused) {
+      ctx.fillStyle = "#06161be8";
+      ctx.fillRect(300, 275, 424, 150);
+      ctx.fillStyle = "#e3eeee";
+      ctx.font = "bold 30px system-ui";
+      ctx.fillText("PAUSED", 448, 335);
+      ctx.font = "18px system-ui";
+      ctx.fillText("A / Start or tap Resume", 414, 378);
+    }
+    return;
+  }
   const room = world.room;
   for (let i = 0; i < 2; i++) {
     const buffer = composeView(
@@ -234,10 +160,6 @@ function draw() {
   }
   drawMeters();
   if (world.menu) {
-    if (previousMenu !== world.menu) {
-      selection = 0;
-      previousMenu = world.menu;
-    }
     const paper = [
       "#000",
       "#0000cd",
@@ -251,11 +173,11 @@ function draw() {
     ctx.fillStyle = paper;
     ctx.fillRect(32, 72, 192, 56);
     text((world.menu.title || "").slice(0, 31), 34, 72);
-    let first = Math.max(0, selection - 4);
+    let first = Math.max(0, controls.selection - 4);
     for (let row = 0; row < 6; row++) {
       let option = world.menu.options[first + row];
       if (!option) break;
-      let chosen = first + row === selection;
+      let chosen = first + row === controls.selection;
       ctx.fillStyle = chosen ? "#000" : paper;
       ctx.fillRect(32, 80 + row * 8, 192, 8);
       text(
@@ -265,6 +187,12 @@ function draw() {
         chosen ? paper : "#000",
       );
     }
+  }
+  if (controls.paused) {
+    ctx.fillStyle = "#000d";
+    ctx.fillRect(32, 8, 192, 120);
+    text("PAUSED", 108, 48, "#00cdcd");
+    text("A / START / RESUME", 68, 72, "#cdcd00");
   }
   if (world.end && !world.menu) {
     ctx.fillStyle = "#000";
@@ -285,16 +213,14 @@ function draw() {
     text("PRESS RESTART TO PLAY AGAIN", 34, 88, "#00cdcd");
   }
 }
-setInterval(() => {
-  if (!playing || world.menu || world.end) return;
-  for (const [key, dir] of Object.entries(directionKeys))
-    if (keys.has(key)) {
-      world.move(dir);
-      break;
-    }
-  world.tick();
-  draw();
-}, 80);
-// Expose named state for inspection and deterministic browser QA, not a CPU debugger.
-window.recovery = { world, data, begin, draw };
+controls = new GameControls(world, { draw, audio, canvas });
+setInterval(() => controls.tick(), 80);
+window.recovery = {
+  world,
+  data,
+  controls,
+  input: controls.input,
+  begin: () => controls.start(),
+  draw,
+};
 draw();

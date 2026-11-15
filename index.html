@@ -2,57 +2,124 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
     <title>How to Be a Complete Bastard — Native JavaScript Recovery</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
-      <h1>How to Be a Complete Bastard</h1>
-      <p class="edition">1987 · Virgin Games · Sentient Software</p>
-      <canvas
-        id="game"
-        width="256"
-        height="192"
-        tabindex="0"
-        aria-label="Game. Q A O P to move, Space for actions, 1 and 2 rotate the room views."
-      ></canvas>
-      <div class="toolbar">
-        <button id="start">Start game</button
-        ><button id="sound" aria-pressed="false">Sound off</button
-        ><button id="restart">Restart</button>
-      </div>
-      <p class="controls">
-        <kbd>Q</kbd>/<kbd>A</kbd> forward / back · <kbd>O</kbd>/<kbd>P</kbd>
-        left / right · <kbd>Space</kbd> action<br /><kbd>1</kbd>/<kbd>2</kbd>
-        rotate views · <kbd>F</kbd> fart · <kbd>Esc</kbd> close menu
-      </p>
-      <div class="touch" aria-label="Touch game controls">
-        <button data-key="q">↑</button>
-        <div>
-          <button data-key="o">←</button><button data-key=" ">Action</button
-          ><button data-key="p">→</button>
+      <header>
+        <h1>How to Be a Complete Bastard</h1>
+        <p class="edition">1987 · Virgin Games · Sentient Software</p>
+      </header>
+      <div class="play-layout">
+        <div class="screen">
+          <canvas
+            id="game"
+            width="256"
+            height="192"
+            tabindex="0"
+            aria-label="Game screen. Use the on-screen controls or a standard gamepad."
+          ></canvas>
+          <p id="presentation-status" role="status"></p>
         </div>
-        <button data-key="a">↓</button>
+        <section class="control-panel" aria-label="Game controls">
+          <div class="toolbar">
+            <button id="start" data-action="start">Start</button
+            ><button id="pause" data-action="pause" aria-pressed="false">
+              Pause</button
+            ><button id="restart" data-action="restart">Reset</button
+            ><button id="sound" data-action="sound" aria-pressed="false">
+              Sound off
+            </button>
+          </div>
+          <div class="presentation-controls">
+            <button id="camera" data-action="camera">View: Split</button
+            ><button id="style" data-action="style">Art: Original</button>
+          </div>
+          <div id="menu-reader" role="status" aria-live="polite" hidden>
+            <p id="menu-title"></p>
+            <p id="menu-choice"></p>
+            <span id="menu-position"></span>
+          </div>
+          <div class="touch" aria-label="Touch controls">
+            <div class="view-controls">
+              <button data-action="viewTop" aria-label="Rotate upper view">
+                View 1 ↻</button
+              ><button data-action="viewBottom" aria-label="Rotate lower view">
+                View 2 ↻</button
+              ><button data-action="inventory">Pockets</button
+              ><button data-action="fart">Fart</button>
+            </div>
+            <div class="movement-actions">
+              <div class="dpad">
+                <button
+                  class="up"
+                  data-action="up"
+                  aria-label="Move forward or previous menu option"
+                >
+                  ↑</button
+                ><button class="left" data-action="left" aria-label="Move left">
+                  ←</button
+                ><button
+                  class="down"
+                  data-action="down"
+                  aria-label="Move back or next menu option"
+                >
+                  ↓</button
+                ><button
+                  class="right"
+                  data-action="right"
+                  aria-label="Move right"
+                >
+                  →
+                </button>
+              </div>
+              <div class="action-buttons">
+                <button id="action" data-action="interact">Action</button
+                ><button data-action="cancel">Back</button>
+              </div>
+            </div>
+          </div>
+          <p id="controller-status" role="status">
+            Controller: press a pad button to connect.
+          </p>
+          <details class="mappings">
+            <summary>Controls &amp; help</summary>
+            <p>
+              Pad: stick / D-pad move or select · A confirm · B back · X pockets
+              · Y fart · LB / RB rotate · LT sound · Start pause · Select reset
+              · L3 view · R3 art.
+            </p>
+            <p>
+              Touch: use the arrows to move or select, then Action / Confirm.
+              Hold a direction and Action together to interact while walking.
+              Back returns through menus. Pockets opens inventory. Take, use and
+              empty-pocket actions are chosen in the game menus when available.
+            </p>
+            <p>
+              Keyboard fallback: Q/A/O/P or arrows · Space/Enter confirm · I
+              pockets · F fart · 1/2 rotate · Esc back/pause · R reset · V view
+              · M art.
+            </p>
+          </details>
+        </section>
       </div>
-      <details>
+      <details class="about">
         <summary>About this recovery milestone</summary>
         <p>
-          This is an incomplete, native JavaScript reconstruction from the
-          supplied alternate snapshot. The renderer has passed byte comparisons
-          against the original for all 14 room layouts and four camera angles.
-          Navigation, search, item menus and action tables are being recovered.
-          Guest AI, effects, scoring, endings and sound are still under
-          verification. It does not run Spectrum instructions.
+          This is an incomplete native JavaScript reconstruction, without an
+          emulator. The original renderer has passed comparisons for 14 rooms
+          and four views. Guest AI, effects, scoring and endings remain under
+          verification. New presentation modes share the same recovered game
+          state; inferred geometry and photoreal coverage are documented.
         </p>
         <p>
-          Walk into furniture and press Action to search it. With no target,
-          Action opens your pockets. Q/A or arrows select menu entries;
-          Space/Enter chooses.
-        </p>
-        <p>
-          <a href="docs/recovery-status.md">Recovery status and provenance</a> ·
+          <a href="docs/recovery-status.md">Recovery status</a> ·
           <a href="https://github.com/mysticalg/how-to-be-a-complete-bastard-js"
             >Editable source</a
           >

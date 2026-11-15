@@ -1,0 +1,188 @@
+{
+  "sources": {
+    "front": {
+      "file": "player-contact-front.png",
+      "columns": 2,
+      "rows": 1,
+      "frames": [
+        [
+          223,
+          20,
+          435,
+          987
+        ],
+        [
+          871,
+          18,
+          441,
+          993
+        ]
+      ],
+      "anchors": [
+        {
+          "x": 184.18174659985684,
+          "y": 987
+        },
+        {
+          "x": 236.02997873848335,
+          "y": 993
+        }
+      ],
+      "sourceSHA256": "621091a15e20ac270b2f3ff5eaf0c547870798a58ca6b2ac321c19a45723ab1b"
+    },
+    "rightA": {
+      "file": "player-contact-right-a.png",
+      "columns": 1,
+      "rows": 1,
+      "frames": [
+        [
+          38,
+          50,
+          959,
+          1462
+        ]
+      ],
+      "anchors": [
+        {
+          "x": 471.71829648475295,
+          "y": 1462
+        }
+      ],
+      "sourceSHA256": "56c670f307a3f9341a90e3c110f7d381496e29107255832d3bca95e3b1443bd1"
+    },
+    "back": {
+      "file": "player-contact-back.png",
+      "columns": 2,
+      "rows": 1,
+      "frames": [
+        [
+          134,
+          43,
+          536,
+          953
+        ],
+        [
+          925,
+          43,
+          476,
+          953
+        ]
+      ],
+      "anchors": [
+        {
+          "x": 290.92236220472444,
+          "y": 953
+        },
+        {
+          "x": 189.33389857244262,
+          "y": 953
+        }
+      ],
+      "sourceSHA256": "1fbce7991c6e2eb9e71732b33273a5385039a62b60fa0c09ee5b3f2d52e8cf39"
+    },
+    "left": {
+      "file": "player-contact-left.png",
+      "columns": 2,
+      "rows": 1,
+      "frames": [
+        [
+          148,
+          28,
+          600,
+          844
+        ],
+        [
+          971,
+          28,
+          637,
+          842
+        ]
+      ],
+      "anchors": [
+        {
+          "x": 309.53671058609723,
+          "y": 844
+        },
+        {
+          "x": 313.03575966600107,
+          "y": 842
+        }
+      ],
+      "sourceSHA256": "df7566b6d16cf8f6ce31451f7632ca377fef612f0eafa13495f441a0db6ef78e"
+    },
+    "rightB": {
+      "file": "player-contact-right-b.png",
+      "columns": 1,
+      "rows": 1,
+      "frames": [
+        [
+          163,
+          128,
+          721,
+          1240
+        ]
+      ],
+      "anchors": [
+        {
+          "x": 351.7711209860869,
+          "y": 1240
+        }
+      ],
+      "sourceSHA256": "6444703541d31ea590b9454e85df5883c891252226a0d320425fffb217dc7eef"
+    }
+  },
+  "directions": [
+    "front",
+    "right",
+    "back",
+    "left"
+  ],
+  "phases": [
+    "left leg forward / right arm forward",
+    "right leg forward / left arm forward"
+  ],
+  "poses": [
+    [
+      [
+        "front",
+        0
+      ],
+      [
+        "front",
+        1
+      ]
+    ],
+    [
+      [
+        "rightA",
+        0
+      ],
+      [
+        "rightB",
+        0
+      ]
+    ],
+    [
+      [
+        "back",
+        0
+      ],
+      [
+        "back",
+        1
+      ]
+    ],
+    [
+      [
+        "left",
+        0
+      ],
+      [
+        "left",
+        1
+      ]
+    ]
+  ],
+  "phaseMilliseconds": 280,
+  "acceptance": "Visual limb-continuity review; image hashes alone do not prove gait."
+}

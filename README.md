@@ -14,6 +14,10 @@ Open http://127.0.0.1:4173. No installation or build step is needed. The files a
 
 Q/A/O/P or arrows move; Space opens actions. Walk into furniture before pressing Space to search it. With no target, Space opens your pockets. Q/A select menu entries and Space/Enter chooses. Keys 1 and 2 rotate the views. F activates the fart action. Escape closes a menu. Touch controls are provided.
 
+All current flows also work through a standard gamepad or the touch buttons. Pad: stick/D-pad move/select, A confirm, B back, X pockets, Y fart, LB/RB rotate, LT sound, Start pause, Select reset, L3 camera, R3 art. The controller status appears below the game. On-screen controls cover the same actions without a keyboard.
+
+Select **Split / Isometric** independently of **Original / Photoreal**. Photoreal is currently a hallway pilot in Isometric view; Split retains the original artwork. Switching presentation preserves the same game state. Isometric movement follows screen-left/right/up/down and diagonals, with render interpolation; Split retains the recovered turn-before-step behavior. Both use the same collision and doorway routines and the unchanged 80 ms native simulation interval. See [controls and movement](docs/controls-and-movement.md) and [art coverage](docs/art-coverage.md).
+
 ## Established evidence
 
 - 14 original rooms, 74 sprite definitions, masks, doors, projection, draw order and four camera orientations recovered.
@@ -35,9 +39,13 @@ The original archive, snapshot, full RAM, research simulator, private traces and
 | `src/world.js` | Named state, movement, collision, pockets and item rules |
 | `src/renderer.js` | Projection, depth ordering and masked sprite composition |
 | `src/audio.js` | Web Audio event arrangement and beeper feedback |
+| `src/input.js`, `src/controller.js` | Shared gamepad/touch/keyboard actions and menus |
+| `src/movement.js` | Screen-space isometric steering and render interpolation |
+| `src/isometric.js` | Unified room geometry and optional photoreal rendering |
 | `src/main.js` | Browser controls, canvas and menus |
 | `assets/game-data.json` | Decoded rooms, graphics, items, rules and address provenance |
 | `assets/menu-music.json` | Musical events in 50 Hz ticks |
+| `assets/photoreal/` | Generated artwork, measured source rectangles and frame audit |
 | `tests/recovery.test.js` | Frame hashes and selected state transitions |
 
 Run `npm test`. See [recovery status](docs/recovery-status.md) for provenance and limitations.
