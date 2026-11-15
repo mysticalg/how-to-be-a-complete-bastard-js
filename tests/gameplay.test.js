@@ -130,6 +130,16 @@ const effects = JSON.parse(
 const itemOutcomes = JSON.parse(
   fs.readFileSync(new URL("./fixtures/item-outcomes.json", import.meta.url)),
 );
+const referenceText = JSON.parse(
+  fs.readFileSync(
+    new URL("./fixtures/item-reference-text.json", import.meta.url),
+  ),
+);
+for (const expected of referenceText)
+  test(`item ${expected.item}: original encoded noun expansion`, () => {
+    const w = new World({ ...data, specialVerbs: [{ text: "X$Y" }] });
+    assert.equal(w.specialText(0, expected.item, null), expected.text);
+  });
 const groundSpecials = JSON.parse(
   fs.readFileSync(new URL("./fixtures/ground-specials.json", import.meta.url)),
 );

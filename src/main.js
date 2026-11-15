@@ -13,7 +13,7 @@ import { composeView, viewPixels } from "./renderer.js";
 const canvas = document.querySelector("#game"),
   ctx = canvas.getContext("2d", { alpha: false });
 ctx.imageSmoothingEnabled = false;
-const data = await (await fetch("assets/game-data.json")).json();
+const data = await (await fetch("assets/game-data.json?v=1.0.1")).json();
 const world = new World(data);
 const load = (src) =>
   new Promise((resolve, reject) => {

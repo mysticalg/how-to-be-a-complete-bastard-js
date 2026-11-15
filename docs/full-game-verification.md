@@ -11,6 +11,7 @@ The browser now implements the complete set of decoded game systems as native na
 | Basic item actions | All 189 decoded verb outcomes: score, meters and item removal |
 | Ground special actions | 32 outcomes: prerequisites, pockets, meters, score and ending |
 | Guest/furniture contexts | 74 outcomes: gender eligibility, consumption, injury/removal, rating, traps and score |
+| Encoded item references | All 115 noun expansions captured from the original print routine |
 | Furniture base actions | 46 burn/smash/urinate/bespoke outcomes: score, mutation, pockets and room transitions |
 | Special callbacks | All 22 returning routines: meters, traps, pockets, relocation, PRNG and score |
 | ROM-reset callback | Mapped to application reset and return to the splash |

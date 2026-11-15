@@ -231,7 +231,10 @@ export class World {
         /\bHIS\b/g,
         target?.type >= 9 && target?.type <= 16 ? "HER" : "HIS",
       )
-      .replaceAll("$", ` THE ${this.itemName(item).split(" ").at(-1)} `)
+      .replaceAll(
+        "$",
+        ` THE ${this.data.items[item]?.referenceNoun ?? this.itemName(item).split(" ").at(-1)} `,
+      )
       .replace(/ +/g, " ")
       .trim();
   }
@@ -245,7 +248,10 @@ export class World {
         /\bHIS\b/g,
         target?.type >= 9 && target?.type <= 16 ? "HER" : "HIS",
       )
-      .replaceAll("$", ` THE ${this.itemName(item).split(" ").at(-1)} `)
+      .replaceAll(
+        "$",
+        ` THE ${this.data.items[item]?.referenceNoun ?? this.itemName(item).split(" ").at(-1)} `,
+      )
       .replace(/ +/g, " ")
       .trim();
   }
