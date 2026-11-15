@@ -1,0 +1,10 @@
+{
+  "type": "module",
+  "name": "complete-bastard-native-js",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node tools/serve.js",
+    "test": "node --test tests/*.test.js"
+  }
+}

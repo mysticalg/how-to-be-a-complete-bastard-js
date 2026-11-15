@@ -1,0 +1,11 @@
+node_modules/
+work/
+*.z80
+*.sna
+*.tap
+*.tzx
+*.rom
+*.bin
+*.zip
+.env
+.env.*

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>How to Be a Complete Bastard — Native JavaScript Recovery</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>How to Be a Complete Bastard</h1>
+      <p class="edition">1987 · Virgin Games · Sentient Software</p>
+      <canvas
+        id="game"
+        width="256"
+        height="192"
+        tabindex="0"
+        aria-label="Game. Q A O P to move, Space for actions, 1 and 2 rotate the room views."
+      ></canvas>
+      <div class="toolbar">
+        <button id="start">Start game</button
+        ><button id="sound" aria-pressed="false">Sound off</button
+        ><button id="restart">Restart</button>
+      </div>
+      <p class="controls">
+        <kbd>Q</kbd>/<kbd>A</kbd> forward / back · <kbd>O</kbd>/<kbd>P</kbd>
+        left / right · <kbd>Space</kbd> action<br /><kbd>1</kbd>/<kbd>2</kbd>
+        rotate views · <kbd>F</kbd> fart · <kbd>Esc</kbd> close menu
+      </p>
+      <div class="touch" aria-label="Touch game controls">
+        <button data-key="q">↑</button>
+        <div>
+          <button data-key="o">←</button><button data-key=" ">Action</button
+          ><button data-key="p">→</button>
+        </div>
+        <button data-key="a">↓</button>
+      </div>
+      <details>
+        <summary>About this recovery milestone</summary>
+        <p>
+          This is an incomplete, native JavaScript reconstruction from the
+          supplied alternate snapshot. The renderer has passed byte comparisons
+          against the original for all 14 room layouts and four camera angles.
+          Navigation, search, item menus and action tables are being recovered.
+          Guest AI, effects, scoring, endings and sound are still under
+          verification. It does not run Spectrum instructions.
+        </p>
+        <p>
+          Walk into furniture and press Action to search it. With no target,
+          Action opens your pockets. Q/A or arrows select menu entries;
+          Space/Enter chooses.
+        </p>
+        <p>
+          <a href="docs/recovery-status.md">Recovery status and provenance</a> ·
+          <a href="https://github.com/mysticalg/how-to-be-a-complete-bastard-js"
+            >Editable source</a
+          >
+        </p>
+      </details>
+      <p id="status" role="status">Loading recovered artwork…</p>
+    </main>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
