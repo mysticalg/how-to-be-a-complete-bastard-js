@@ -1,3 +1,5 @@
+import { drawPhotoGuest } from "./photo-actors.js";
+import { drawIsometricHud } from "./hud.js";
 // A scene renderer over the recovered x/y plane, not a second game simulation.
 // Footprints and door positions are recovered; elevations and architectural meshes
 // are inferred because the original stores sprite projections rather than 3D meshes.
@@ -18,26 +20,44 @@ export function getPlayerRenderAudit() {
 }
 export const PHOTO_FILES = {
   player: "assets/photoreal/player-walk.png",
-  male: "assets/photoreal/male-walk.png",
-  female: "assets/photoreal/female-walk.png",
   props: "assets/photoreal/props.png",
   stairs: "assets/photoreal/stairs.png",
   materials: "assets/photoreal/materials.png",
 };
 export const photos = { loaded: false, loading: false, failed: false };
-export async function loadPhotoreal(redraw) {
-  if (photos.loaded || photos.loading || photos.failed) return;
+export function areRoomPhotosReady(world) {
+  if (!photos.loaded || !photos.roomArt) return false;
+  const keys = new Set(
+    world.room.objects.flatMap((e) =>
+      photos.roomArt.props[e.type] ? [photos.roomArt.props[e.type].sheet] : [],
+    ),
+  );
+  for (const a of world.visibleActors)
+    keys.add(photos.roomArt.guests[a.type].sheet);
+  if (world.end === 5) keys.add("victory");
+  return [...keys].every((key) => !!photos[key]);
+}
+export async function loadPhotoreal(redraw, world) {
+  if (photos.loading || photos.loaded || photos.failed) return;
   photos.loading = true;
   try {
-    const atlasIndex = await (
-      await fetch("assets/photoreal/atlas-index.json")
-    ).json();
-    const contacts = await (
-      await fetch("assets/photoreal/player-contacts.json")
-    ).json();
+    const [atlasIndex, contacts, fullIndex] = await Promise.all(
+      ["atlas-index", "player-contacts", "room-art-index"].map(async (name) =>
+        (await fetch(`assets/photoreal/${name}.json`)).json(),
+      ),
+    );
     photos.contacts = contacts;
+    photos.roomArt = fullIndex;
     const files = {
       ...PHOTO_FILES,
+      surfaces: "assets/photoreal/surfaces.png",
+      victory: "assets/photoreal/victory-cat.png",
+      ...Object.fromEntries(
+        Object.entries(fullIndex.sheets).map(([key, meta]) => [
+          key,
+          "assets/photoreal/" + meta.file,
+        ]),
+      ),
       ...Object.fromEntries(
         Object.entries(contacts.sources).map(([key, meta]) => [
           "contact_" + key,
@@ -45,31 +65,53 @@ export async function loadPhotoreal(redraw) {
         ]),
       ),
     };
-    await Promise.all(
-      Object.entries(files).map(
-        ([key, src]) =>
-          new Promise((resolve, reject) => {
-            const image = new Image();
-            image.onload = () => {
-              const meta =
-                atlasIndex[key] ||
-                contacts.sources[key.replace("contact_", "")];
-              image.frames = meta?.frames;
-              image.anchors = meta?.anchors;
-              image.referenceHeight = meta?.referenceHeight;
-              image.columns = atlasIndex[key]?.columns;
-              image.rows = atlasIndex[key]?.rows;
-              photos[key] = image;
-              resolve();
-            };
-            image.onerror = reject;
-            image.src = src;
-          }),
-      ),
-    );
+    const load = ([key, src]) =>
+      new Promise((resolve, reject) => {
+        const im = new Image();
+        im.onload = () => {
+          const meta =
+            fullIndex.sheets[key] ||
+            atlasIndex[key] ||
+            contacts.sources[key.replace("contact_", "")];
+          Object.assign(im, {
+            frames: meta?.frames,
+            anchors: meta?.anchors,
+            referenceHeight: meta?.referenceHeight,
+            columns: meta?.columns,
+            rows: meta?.rows,
+          });
+          photos[key] = im;
+          resolve();
+        };
+        im.onerror = reject;
+        im.src = src;
+      });
+    const critical = new Set([
+      ...Object.keys(PHOTO_FILES),
+      "surfaces",
+      ...Object.keys(contacts.sources).map((k) => "contact_" + k),
+    ]);
+    if (world) {
+      for (const e of world.room.objects) {
+        const meta = fullIndex.props[e.type];
+        if (meta) critical.add(meta.sheet);
+      }
+      for (const a of world.visibleActors)
+        critical.add(fullIndex.guests[a.type].sheet);
+    }
+    const entries = Object.entries(files);
+    await Promise.all(entries.filter(([key]) => critical.has(key)).map(load));
     photos.loaded = true;
-  } catch {
+    redraw();
+    const remaining = entries.filter(([key]) => !critical.has(key));
+    for (let i = 0; i < remaining.length; i += 3) {
+      await Promise.all(remaining.slice(i, i + 3).map(load));
+      redraw();
+    }
+    photos.complete = true;
+  } catch (error) {
     photos.failed = true;
+    photos.error = String(error);
   }
   photos.loading = false;
   redraw();
@@ -322,6 +364,69 @@ function drawDoor(ctx, project, side, value, photo) {
     photo ? "#9c7a50" : "#a9d8d8",
   );
 }
+function photoProp(ctx, image, index, anchor, width, height) {
+  const bounds = image.frames[index];
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(
+    image,
+    ...bounds,
+    anchor.x - width / 2,
+    anchor.y - height,
+    width,
+    height,
+  );
+}
+function groupProps(world) {
+  const result = new Map();
+  for (const types of [
+    [18],
+    [20],
+    [22, 23],
+    [25],
+    [26, 27],
+    [53, 54],
+    [58, 59],
+    [60, 61],
+  ]) {
+    const remaining = world.room.objects.filter((e) => types.includes(e.type));
+    while (remaining.length) {
+      const members = [remaining.shift()];
+      let changed = true;
+      while (changed) {
+        changed = false;
+        for (let i = remaining.length - 1; i >= 0; i--) {
+          const a = remaining[i],
+            as = world.dimensions(a);
+          if (
+            members.some((b) => {
+              const bs = world.dimensions(b);
+              return (
+                a.x <= b.x + bs[0] + 1 &&
+                a.x + as[0] + 1 >= b.x &&
+                a.y <= b.y + bs[1] + 1 &&
+                a.y + as[1] + 1 >= b.y
+              );
+            })
+          ) {
+            members.push(remaining.splice(i, 1)[0]);
+            changed = true;
+          }
+        }
+      }
+      const x = Math.min(...members.map((e) => e.x)),
+        y = Math.min(...members.map((e) => e.y));
+      const group = {
+        members,
+        x,
+        y,
+        w: Math.max(...members.map((e) => e.x + world.dimensions(e)[0])) - x,
+        d: Math.max(...members.map((e) => e.y + world.dimensions(e)[1])) - y,
+      };
+      for (const e of members) result.set(e, group);
+    }
+  }
+  return result;
+}
 export function drawIsometric(
   ctx,
   world,
@@ -332,7 +437,7 @@ export function drawIsometric(
     project = (x, y, z = 0) => projectWorld(x, y, z, turn),
     room = world.room;
   project.turn = turn;
-  const photo = photoreal && photos.loaded,
+  const photo = photoreal && areRoomPhotosReady(world),
     material = photos.materials;
   ctx.fillStyle = photo ? "#171b20" : "#101c26";
   ctx.fillRect(0, 0, 1024, 768);
@@ -343,14 +448,32 @@ export function drawIsometric(
     project(0, 52),
   ];
   polygon(ctx, floor, colours[(room.colour >> 3) & 7], "#1a3740");
-  if (photo)
-    textureQuad(
-      ctx,
-      material,
-      [0, 0, material.width / 2, material.height],
-      floor,
-    );
-  else
+  if (photo) {
+    const tiles = {
+        1: 1,
+        2: 0,
+        3: 2,
+        4: 4,
+        8: 3,
+        9: 0,
+        10: 5,
+        11: 6,
+        13: 6,
+        14: 6,
+      },
+      tile = tiles[room.id];
+    const surface = tile === undefined ? material : photos.surfaces;
+    const source =
+      tile === undefined
+        ? [0, 0, material.width / 2, material.height]
+        : [
+            ((tile % 4) * surface.width) / 4,
+            (Math.floor(tile / 4) * surface.height) / 2,
+            surface.width / 4,
+            surface.height / 2,
+          ];
+    textureQuad(ctx, surface, source, floor);
+  } else
     for (let n = 0; n <= 52; n += 4) {
       ctx.beginPath();
       let a = project(n, 0),
@@ -416,7 +539,9 @@ export function drawIsometric(
         entity === world.player
           ? visual?.player
           : visual?.actors?.get(entity.id);
-      return sample ? { ...entity, ...sample } : entity;
+      return sample
+        ? { ...entity, ...sample, isPlayer: entity === world.player }
+        : entity;
     });
   const sorted = entities
     .map((entity, index) => {
@@ -424,6 +549,8 @@ export function drawIsometric(
       return { entity, index, depth: x + y };
     })
     .sort((a, b) => b.depth - a.depth || a.index - b.index);
+  const propGroups = photo ? groupProps(world) : new Map();
+  const drawnGroups = new Set();
   let stairsDone = false;
   for (const { entity: e } of sorted) {
     const definition = data.sprites[e.type],
@@ -433,6 +560,10 @@ export function drawIsometric(
     let anchor = project(centre.x, centre.y),
       height = (actor ? 32 : definition.height) / 4;
     const lift = actor ? 0 : Math.max(0, 56 - definition.height - e.height) / 4;
+    if (photo && world.effects.disguise && (e === world.player || e.isPlayer)) {
+      photoProp(ctx, photos["room-effects"], 12 + turn, anchor, 65, 90);
+      continue;
+    }
     if (actor) {
       ctx.fillStyle = "#00000035";
       ctx.beginPath();
@@ -446,6 +577,25 @@ export function drawIsometric(
         : 0;
       anchor.y += bob;
       if (photo) {
+        if (e.type > 0 && e.type < 17) {
+          const meta = photos.roomArt.guests[e.type],
+            sheet = photos[meta.sheet];
+          drawPhotoGuest(
+            ctx,
+            sheet,
+            meta.row * 4 + orientation,
+            anchor,
+            height * 10,
+            orientation,
+            {
+              walking,
+              phase: ((e.phase ?? performance.now() / 100) * 100) / 280,
+              status: e.status,
+              skirt: [9, 10, 12, 13, 14, 15].includes(e.type),
+            },
+          );
+          continue;
+        }
         let sheet =
           e.type === 0
             ? photos.player
@@ -592,6 +742,31 @@ export function drawIsometric(
       );
       continue;
     }
+    if (photo && photos.roomArt.props[e.type]) {
+      const group = propGroups.get(e) || {
+        members: [e],
+        x: e.x,
+        y: e.y,
+        w: size[0],
+        d: size[1],
+      };
+      if (drawnGroups.has(group)) continue;
+      drawnGroups.add(group);
+      const mapping = e.damageKind
+          ? { sheet: "room-structure", row: e.damageKind === "burn" ? 3 : 4 }
+          : photos.roomArt.props[e.type],
+        image = photos[mapping.sheet],
+        orientation = data.orientation[world.views[0] + e.facing];
+      const position = project(
+        group.x + group.w / 2,
+        group.y + group.d / 2,
+        lift,
+      );
+      const width = (group.w + group.d) * 7.3 * 0.9,
+        h = height * 10 + (group.w + group.d) * (7.3 / Math.sqrt(3)) * 0.5;
+      photoProp(ctx, image, mapping.row * 4 + orientation, position, width, h);
+      continue;
+    }
     const palette = photo
       ? ["#99734b", "#725039", "#4f392b"]
       : ["#8bb6b7", "#426d77", "#2b505c"];
@@ -651,6 +826,29 @@ export function drawIsometric(
       );
     }
   }
+  if (photo) {
+    const marks = [
+      ["hole", 0, 26, 26],
+      ["rake", 1, 23, 24],
+      ["whoopee", 2, 36, 22],
+    ];
+    for (const [key, row, x, y] of marks)
+      if (world.effects[key] === room.id)
+        photoProp(
+          ctx,
+          photos["room-effects"],
+          row * 4 + turn,
+          project(x, y),
+          45,
+          25,
+        );
+    if (world.effects.stereo) {
+      ctx.fillStyle = "#d42a2a15";
+      ctx.fillRect(100, 60, 412, 570);
+      ctx.fillStyle = "#36cfcf15";
+      ctx.fillRect(512, 60, 412, 570);
+    }
+  }
   // Front thresholds stay low to keep player/furniture visible and preserve every exit.
   for (const side of [0, 1, 2, 3]) {
     const a =
@@ -697,42 +895,7 @@ export function drawIsometric(
       }
     }
   }
-  ctx.fillStyle = "#101820ee";
-  ctx.fillRect(0, 0, 1024, 54);
-  ctx.font = "bold 20px system-ui";
-  ctx.fillStyle = "#e8d776";
-  ctx.fillText(
-    `BASTARD POINTS ${String(Math.abs(world.score)).padStart(6, "0")}`,
-    22,
-    34,
-  );
-  ctx.font = "16px system-ui";
-  ctx.fillStyle = "#c0d5d9";
-  ctx.fillText(`ROOM ${room.id}   ·   ISOMETRIC`, 725, 33);
-  ctx.fillStyle = "#101820ee";
-  ctx.fillRect(0, 664, 1024, 104);
-  ctx.font = "15px system-ui";
-  for (const [i, [name, value, max]] of [
-    ["WEE", world.wee, 70],
-    ["FART", world.fart, 65],
-    ["DRUNK", world.drunk, 85],
-    ["SMELL", world.smell, 85],
-  ].entries()) {
-    const x = 22 + i * 250;
-    ctx.fillStyle = "#b0c5c9";
-    ctx.fillText(name, x, 690);
-    ctx.fillStyle = "#293b45";
-    ctx.fillRect(x, 700, 225, 8);
-    ctx.fillStyle = "#00bdbd";
-    ctx.fillRect(x, 700, (225 * value) / max, 8);
-  }
-  ctx.fillStyle = "#9fb5ba";
-  ctx.font = "14px system-ui";
-  ctx.fillText(
-    "Screen directions + diagonals · fixed simulation tick · original collision/door rules",
-    22,
-    741,
-  );
+  drawIsometricHud(ctx, world, data);
   if (world.target) {
     ctx.font = "16px system-ui";
     ctx.fillStyle = "#efe2a4";

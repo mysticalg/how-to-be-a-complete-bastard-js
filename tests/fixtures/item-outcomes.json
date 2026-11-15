@@ -1,0 +1,1892 @@
+[
+  {
+    "item": 0,
+    "verb": 0,
+    "score": -30,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 0,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 0,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 2,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 3,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 4,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 7,
+    "verb": 3,
+    "score": 32,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 7,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 8,
+    "verb": 3,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 8,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 9,
+    "verb": 0,
+    "score": -46,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 9,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 10,
+    "verb": 0,
+    "score": 23,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 11
+  },
+  {
+    "item": 10,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 11
+  },
+  {
+    "item": 10,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 11
+  },
+  {
+    "item": 11,
+    "verb": 0,
+    "score": 13,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 11,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 12,
+    "verb": 0,
+    "score": -30,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 12,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 13,
+    "verb": 0,
+    "score": 9,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 13
+  },
+  {
+    "item": 13,
+    "verb": 4,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 13
+  },
+  {
+    "item": 14,
+    "verb": 0,
+    "score": -18,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 14
+  },
+  {
+    "item": 14,
+    "verb": 4,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 14
+  },
+  {
+    "item": 15,
+    "verb": 0,
+    "score": 13,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 15,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 16,
+    "verb": 0,
+    "score": -28,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 18
+  },
+  {
+    "item": 16,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 18
+  },
+  {
+    "item": 16,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 18
+  },
+  {
+    "item": 17,
+    "verb": 0,
+    "score": -28,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 18
+  },
+  {
+    "item": 17,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 18
+  },
+  {
+    "item": 17,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 18
+  },
+  {
+    "item": 18,
+    "verb": 0,
+    "score": -28,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 18,
+    "verb": 4,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 18,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 19,
+    "verb": 0,
+    "score": -28,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 16
+  },
+  {
+    "item": 19,
+    "verb": 4,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 16
+  },
+  {
+    "item": 19,
+    "verb": 5,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 16
+  },
+  {
+    "item": 20,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 21,
+    "verb": 0,
+    "score": -28,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 17
+  },
+  {
+    "item": 21,
+    "verb": 4,
+    "score": 24,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 17
+  },
+  {
+    "item": 21,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 17
+  },
+  {
+    "item": 22,
+    "verb": 1,
+    "score": -62,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 23,
+    "verb": 1,
+    "score": 17,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 7,
+    "location": 33
+  },
+  {
+    "item": 24,
+    "verb": 0,
+    "score": 15,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 28
+  },
+  {
+    "item": 25,
+    "verb": 0,
+    "score": -54,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 25,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 26,
+    "verb": 0,
+    "score": -14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 26,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 27,
+    "verb": 0,
+    "score": 3,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 28,
+    "verb": 1,
+    "score": -6,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 29,
+    "verb": 1,
+    "score": -38,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 4,
+    "smell": 7,
+    "location": 36
+  },
+  {
+    "item": 30,
+    "verb": 0,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 30,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 31,
+    "verb": 0,
+    "score": -60,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 31,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 32,
+    "verb": 0,
+    "score": -60,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 37
+  },
+  {
+    "item": 32,
+    "verb": 5,
+    "score": 15,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 37
+  },
+  {
+    "item": 33,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 34,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 35,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 36,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 37,
+    "verb": 1,
+    "score": -62,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 7,
+    "location": 45
+  },
+  {
+    "item": 38,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 38,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 39,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 39,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 40,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 40,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 41,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 42,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 43,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 44,
+    "verb": 3,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 44,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 45,
+    "verb": 0,
+    "score": -52,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 61
+  },
+  {
+    "item": 45,
+    "verb": 4,
+    "score": 12,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 61
+  },
+  {
+    "item": 45,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 61
+  },
+  {
+    "item": 46,
+    "verb": 3,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 46,
+    "verb": 5,
+    "score": 7,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 47,
+    "verb": 0,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 47,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 48,
+    "verb": 0,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 48,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 49,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 49,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 50,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 50,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 51,
+    "verb": 0,
+    "score": -14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 51,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 52,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 52,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 53,
+    "verb": 3,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 53,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 54,
+    "verb": 3,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 54,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 55,
+    "verb": 0,
+    "score": -28,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 55,
+    "verb": 5,
+    "score": 21,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 56,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 57,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 57,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 58,
+    "verb": 1,
+    "score": -62,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 58,
+    "verb": 5,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 59,
+    "verb": 5,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 60,
+    "verb": 5,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 61,
+    "verb": 5,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 62,
+    "verb": 3,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 63,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 63,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 64,
+    "verb": 1,
+    "score": -52,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 64,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 65,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 66,
+    "verb": 3,
+    "score": 2,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 66,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 67,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 68,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 69,
+    "verb": 3,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 69,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 70,
+    "verb": 5,
+    "score": 15,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 71,
+    "verb": 0,
+    "score": 7,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 71,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 73,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 74,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 75,
+    "verb": 3,
+    "score": 32,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 75,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 76,
+    "verb": 0,
+    "score": 14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 76,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 77,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 78,
+    "verb": 1,
+    "score": -38,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 4,
+    "smell": 7,
+    "location": 94
+  },
+  {
+    "item": 78,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 94
+  },
+  {
+    "item": 79,
+    "verb": 0,
+    "score": -64,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 79,
+    "verb": 4,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 79,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 80,
+    "verb": 5,
+    "score": 7,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 81,
+    "verb": 0,
+    "score": -32,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 81,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 82,
+    "verb": 1,
+    "score": -42,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 82,
+    "verb": 5,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 83,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 84,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 85,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 86,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 87,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 87,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 88,
+    "verb": 0,
+    "score": 6,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 88,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 89,
+    "verb": 0,
+    "score": 12,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 89,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 90,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 90,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 91,
+    "verb": 0,
+    "score": 14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 91,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 92,
+    "verb": 3,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 92,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 93,
+    "verb": 5,
+    "score": 7,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 94,
+    "verb": 0,
+    "score": 21,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 94,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 95,
+    "verb": 0,
+    "score": 14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 95,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 96,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 97,
+    "verb": 0,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 97,
+    "verb": 4,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 97,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 98,
+    "verb": 2,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 100,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 101,
+    "verb": 0,
+    "score": -14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 101,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 102,
+    "verb": 0,
+    "score": -14,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 102,
+    "verb": 5,
+    "score": 6,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 103,
+    "verb": 1,
+    "score": -42,
+    "fart": 13,
+    "wee": 16,
+    "drunk": 14,
+    "smell": 8,
+    "location": 255
+  },
+  {
+    "item": 103,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 104,
+    "verb": 2,
+    "score": 24,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 104,
+    "verb": 5,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 105,
+    "verb": 0,
+    "score": 9,
+    "fart": 18,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 105,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 106,
+    "verb": 2,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 106,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 107,
+    "verb": 2,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 107,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 108,
+    "verb": 2,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 108,
+    "verb": 5,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 109,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 109,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 110,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 110,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 111,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 111,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 112,
+    "verb": 2,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 112,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 113,
+    "verb": 5,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  },
+  {
+    "item": 114,
+    "verb": 5,
+    "score": 17,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255
+  }
+]

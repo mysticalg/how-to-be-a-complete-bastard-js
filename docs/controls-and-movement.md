@@ -40,3 +40,5 @@ Rendered left/right clips and per-frame audits showed all four side frames, one 
 ## Limits
 
 Tests use simulated controller state, Chromium touch/device emulation, and controlled fixtures. No physical Windows controller, Android phone, iPhone or tablet hardware test is claimed. Browser/device-specific button mappings, sustained mobile GPU performance and the unfinished original gameplay systems remain open.
+
+Fresh startup selects Photoreal Isometric. The pause menu offers Resume or ending the party to see the current rating; use up/down and A / Action. Ending screens advance through their recovered message/rating/final-reveal stages and return to the splash.

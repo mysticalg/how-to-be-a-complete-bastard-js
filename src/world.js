@@ -1,5 +1,7 @@
 // Recovered game state and room navigation: 8237–8504, BA2C–BB68.
 // All original addresses are documentation; gameplay uses ordinary objects.
+import { GAMEPLAY } from "./gameplay-data.js";
+import { updateGuests, hurtGuest } from "./guests.js";
 import { advanceWalk } from "./renderer.js";
 const clone = (x) => structuredClone(x);
 const DIRECTIONS = [
@@ -16,6 +18,12 @@ export class World {
   reset() {
     this.rooms = clone(this.data.rooms);
     this.actors = clone(this.data.actors);
+    for (const a of this.actors) {
+      a.flags = 0;
+      a.savedX = a.savedY = a.id >= 15 ? 40 : 20;
+    }
+    this.guestFrames = [0, 0, 0, 0, 0];
+    this.smellCountdown = 0;
     this.locations = [...this.data.objectLocations];
     this.player = {
       flags: 1,
@@ -38,10 +46,14 @@ export class World {
     this.effects = {};
     this.end = 0;
     this.tickNumber = 0;
+    this.rebooted = false;
+    this.pendingResult = null;
     this.randomSeed = 0x7471;
     this.target = null;
     this.message = "";
     this.menu = null;
+    this.caption = "";
+    this.captionTicks = 0;
     this.enterRoom();
   }
   get room() {
@@ -52,7 +64,8 @@ export class World {
   }
   get visibleActors() {
     return this.actors
-      .filter((a) => a.room === this.room.id && a.status !== 255)
+      .filter((a) => a.room === this.room.id && a.status !== 255 && a.flags & 1)
+      .sort((a, b) => a.slot - b.slot)
       .slice(0, 5);
   }
   random() {
@@ -62,21 +75,43 @@ export class World {
     return this.randomSeed & 255;
   }
   enterRoom() {
+    for (const a of this.actors) {
+      if (a.flags & 1) {
+        a.savedX = a.x;
+        a.savedY = a.y;
+        if (a.slot) this.guestFrames[a.slot - 1] = a.frame;
+      }
+      a.flags = 0;
+    }
     let positions = this.data.actorRoomPositions[this.room.id - 1],
       n = 0;
-    for (const actor of this.visibleActors) {
-      if (!actor.positionSaved) {
+    for (const actor of this.actors
+      .filter((a) => a.room === this.room.id && a.status !== 255)
+      .slice(0, 5)) {
+      if (!actor.status) {
         actor.x = positions[n * 2];
         actor.y = positions[n * 2 + 1];
       }
+      if (actor.status) {
+        actor.x = actor.savedX;
+        actor.y = actor.savedY;
+      }
       actor.height = 24;
       actor.flags = 1;
+      actor.slot = n + 1;
+      actor.facing = (1 - actor.id) & 3;
+      actor.frame = this.guestFrames[n] || 0;
       n++;
     }
+    for (const object of this.room.objects)
+      if (object.damaged) {
+        object.flags |= 128;
+        object.type = GAMEPLAY.damagedTypes[object.originalType];
+      }
     this.target = null;
   }
   dimensions(entity) {
-    const s = this.data.sprites[entity.type];
+    const s = this.data.sprites[entity === this.player ? 0 : entity.type];
     return entity.facing & 1 ? [s.radiusY, s.radiusX] : [s.radiusX, s.radiusY];
   }
   overlaps(a, b) {
@@ -155,76 +190,27 @@ export class World {
       this.player.frame = advanceWalk(this.player.frame);
   }
   tick() {
+    if (this.end) return;
+    if (this.effects.blackoutTicks) {
+      if (!--this.effects.blackoutTicks) {
+        const result = this.pendingResult;
+        this.pendingResult = null;
+        result?.();
+      }
+      return;
+    }
+    if (this.captionTicks && !--this.captionTicks) this.caption = "";
     this.tickNumber++;
-    if (!(this.tickNumber % 10)) {
+    this.smellCountdown = (this.smellCountdown - 1) & 255;
+    if (!this.smellCountdown) {
+      this.smellCountdown = 10;
       this.smell = Math.max(0, this.smell - 1);
     }
     if (!(this.tickNumber % 2)) this.updateActors();
+    if (this.drunk === 85) this.views[1] = (this.views[1] + 4) & 15;
   }
   updateActors() {
-    // Visible guests walk/turn at B80C–B8EE; offscreen guests choose rooms at B6A6–B7EC.
-    for (const a of this.actors) {
-      if (a.status) {
-        if (a.status < 255 && !--a.status)
-          this.rating = Math.max(0, this.rating - 1);
-        continue;
-      }
-      if (a.room !== this.room.id) {
-        if (this.random() < 10) {
-          const room = this.rooms[a.room - 1],
-            side = this.random() & 3,
-            door = room.doors[[3, 0, 1, 2][side]];
-          if (door & 64) continue;
-          let next = a.mapCell + [-1, -3, 1, 3][side],
-            id = this.data.map[next];
-          if (
-            id &&
-            id !== this.room.id &&
-            this.actors.filter((b) => b.room === id).length < 5
-          ) {
-            a.mapCell = next;
-            a.room = id;
-            a.positionSaved = false;
-          }
-        }
-        continue;
-      }
-      if (a.countdown > 20) {
-        a.countdown--;
-        continue;
-      }
-      if (!a.walkTimer) {
-        a.walkTimer = 1;
-        for (let side = 0; side < 4; side++) {
-          let door = this.room.doors[side];
-          if (!(door & 192) && (door + 1) * 2 === (side & 1 ? a.y : a.x)) {
-            if (a.facing !== side) a.facing = (a.facing + 3) & 3;
-            break;
-          }
-        }
-      }
-      a.walkTimer--;
-      let old = { x: a.x, y: a.y };
-      const [dx, dy] = DIRECTIONS[a.facing];
-      a.x += dx;
-      a.y += dy;
-      const blocked =
-        !this.boundary(a) ||
-        this.entities.some(
-          (b) => b !== a && b.flags & 1 && this.overlaps(a, b),
-        );
-      if (blocked) {
-        Object.assign(a, old);
-        a.walkTimer = 5;
-        let turns = this.random() & 1 ? 1 : 3;
-        a.facing = (a.facing + turns) & 3;
-      } else a.frame = advanceWalk(a.frame);
-      if (a.countdown) a.countdown--;
-      else {
-        let n = this.random();
-        a.countdown = n < 20 ? n + 20 : 20;
-      }
-    }
+    updateGuests(this);
   }
   containerLocation(target) {
     return (
@@ -235,14 +221,30 @@ export class World {
   itemName(id) {
     return this.data.items[id]?.text.trim() ?? "";
   }
-  text(index, item = null) {
+  text(index, item = null, target = this.target) {
     return (this.data.messages[index]?.text ?? "")
+      .replace(
+        /\bHIM\b/g,
+        target?.type >= 9 && target?.type <= 16 ? "HER" : "HIM",
+      )
+      .replace(
+        /\bHIS\b/g,
+        target?.type >= 9 && target?.type <= 16 ? "HER" : "HIS",
+      )
       .replaceAll("$", ` THE ${this.itemName(item).split(" ").at(-1)} `)
       .replace(/ +/g, " ")
       .trim();
   }
-  specialText(index, item) {
+  specialText(index, item, target = this.target) {
     return (this.data.specialVerbs[index]?.text ?? "")
+      .replace(
+        /\bHIM\b/g,
+        target?.type >= 9 && target?.type <= 16 ? "HER" : "HIM",
+      )
+      .replace(
+        /\bHIS\b/g,
+        target?.type >= 9 && target?.type <= 16 ? "HER" : "HIS",
+      )
       .replaceAll("$", ` THE ${this.itemName(item).split(" ").at(-1)} `)
       .replace(/ +/g, " ")
       .trim();
@@ -262,7 +264,8 @@ export class World {
     };
   }
   points(amount) {
-    this.score += amount;
+    const next = this.score + amount;
+    this.score = Math.sign(next) * (Math.abs(next) % 1000000);
   }
   canUse(extension) {
     if (!extension) return false;
@@ -274,7 +277,7 @@ export class World {
     if (
       extension.target !== undefined &&
       extension.condition & 128 &&
-      this.visibleActors.some((a) => !a.status)
+      this.actors.some((a) => a.room === this.room.id && !a.status)
     )
       return false;
     let c = extension.condition;
@@ -313,8 +316,9 @@ export class World {
       options.push({
         label: "URINATE",
         run: () => {
+          this.points(this.wee);
           this.wee = 0;
-          this.points(35);
+          this.soundCaption(2);
           this.say("YOU URINATE.");
         },
       });
@@ -335,19 +339,23 @@ export class World {
       25: [
         8,
         () => {
-          this.points(20);
+          this.points(500);
+          this.fleeGuests();
           this.say("YOU PLAY THE PIANO.");
         },
       ],
       50: [
         7,
         () => {
-          this.points(20);
+          this.points(50);
           this.say("YOU SQUEEZE YOUR ZITS.");
         },
       ],
     };
-    if (bespoke[target.type]) {
+    if (
+      bespoke[target.type] &&
+      (target.type !== 43 || this.pockets.some((id) => id !== null))
+    ) {
       let [i, run] = bespoke[target.type];
       options.push({
         label: this.data.containerVerbs[i]?.text.trim() ?? "USE IT",
@@ -364,8 +372,11 @@ export class World {
     this.menu = { title: this.data.names[target.type]?.text.trim(), options };
   }
   damage(target, verb) {
-    target.flags |= 128;
-    target.type = 69 + (target.flags & 2 ? 1 : 0);
+    target.damaged = true;
+    target.damageKind = verb === 1 ? "burn" : "smash";
+    target.originalType ??= target.type;
+    target.type = GAMEPLAY.damagedTypes[target.type];
+    this.soundCaption(verb === 1 ? 3 : 0);
     target.height = 48;
     this.points(100);
     this.say(verb === 1 ? "YOU BURN IT." : "YOU SMASH IT.");
@@ -465,6 +476,11 @@ export class World {
     this.menu = { title: "", options };
   }
   guestMenu(guest) {
+    if (guest.status) {
+      this.menu = null;
+      return;
+    }
+    this.target = guest;
     let options = [];
     for (const id of this.pockets) {
       if (id === null) continue;
@@ -489,15 +505,47 @@ export class World {
   }
   applyEffect(effect, flags) {
     // 8FA1–8FD3: first food/drink choice invokes the B=5 meter helpers.
-    if (flags & 128 && effect & 1) this.fart = Math.min(65, this.fart + 5);
+    if (flags & 128 && effect & 1) this.increaseMeter("fart", 5);
     if (flags & 64) {
-      this.wee = Math.min(70, this.wee + 5);
-      if (effect & 8) this.drunk = Math.min(85, this.drunk + 5);
+      this.increaseMeter("wee", 5);
+      if (effect & 8) this.increaseMeter("drunk", 5);
       if (effect & 4) this.drunk = Math.max(0, this.drunk - 5);
     }
-    if (effect & 64) this.smell = Math.min(85, this.smell + 1);
-    if (this.drunk === 85 && this.fart === 65 && this.wee === 70)
-      this.finish(4);
+    if (effect & 64) this.increaseMeter("smell");
+  }
+  increaseMeter(name, amount = 1) {
+    const maximum = { drunk: 85, smell: 85, wee: 70, fart: 65 }[name];
+    for (let n = 0; n < amount; n++) {
+      if (this[name] === maximum) {
+        if (this.drunk === 85 && this.fart === 65 && this.wee === 70)
+          this.finish(4);
+      } else this[name]++;
+    }
+  }
+  soundCaption(index) {
+    this.caption = GAMEPLAY.captions[index] || "";
+    this.captionTicks = 8;
+  }
+  fleeGuests() {
+    for (const a of this.visibleActors) {
+      a.flags = 0;
+      for (let attempts = 0; attempts < 10000; attempts++) {
+        const cell = this.random();
+        if (cell >= 24) continue;
+        const id = this.data.map[cell];
+        if (
+          !id ||
+          id === this.room.id ||
+          id === 10 ||
+          this.actors.filter((b) => b.room === id && !b.status).length === 5
+        )
+          continue;
+        a.mapCell = cell;
+        a.room = id;
+        a.positionSaved = false;
+        break;
+      }
+    }
   }
   useBasic(id, verb) {
     const rule = this.ruleFor(id);
@@ -508,10 +556,15 @@ export class World {
     ) {
       this.applyEffect(rule.effect, rule.flags);
     }
+    if (this.end === 4) return;
     const message = rule.responses[verb];
     this.points(
       this.data.messages[message].length *
-        (rule.effect & 32 && rule.flags & 224 ? -2 : 1),
+        (rule.effect & 32 &&
+        rule.flags & 192 &&
+        verb === Math.min(...Object.keys(rule.responses).map(Number))
+          ? -2
+          : 1),
     );
     this.say(this.text(message, id));
   }
@@ -519,35 +572,43 @@ export class World {
     const rule = this.ruleFor(id),
       e = rule.extension;
     if (!e || !this.canUse(e)) return;
-    if (e.flags & 1) {
-      this.consume(e.requires);
-    }
-    if (!(e.flags & 16) && !(rule.effect & 128)) this.consume(id);
+    this.consume(id);
+    if (target?.type < 17 && e.flags & 192)
+      hurtGuest(this, target, !!(e.flags & 64));
+    if (this.end === 5) return;
     this.specialRoutine(e.routine, target);
-    if (target?.type < 17) {
-      target.status = e.flags & 64 ? 255 : e.flags & 128 ? 254 : target.status;
-      if (target.status) {
-        this.rating++;
-        if (this.rating === 16) this.finish(5);
-        this.points(target.status === 255 ? 1000 : 500);
-      }
-    }
-    this.points(this.data.messages[e.message].length);
-    this.say(this.text(e.message, id));
+    if (this.rebooted || this.end === 4) return;
+    const showResult = () => {
+      const caption = ((e.condition & 120) >> 3) - 1;
+      if (caption >= 0) this.soundCaption(caption);
+      this.points(
+        this.data.messages[e.message].length *
+          (e.flags & 16 && rule.effect & 32 ? -2 : 1),
+      );
+      this.say(this.text(e.message, id, target));
+    };
+    if (this.effects.blackoutTicks) {
+      this.menu = null;
+      this.pendingResult = showResult;
+    } else showResult();
   }
   specialRoutine(routine, target) {
     switch (routine) {
       case 0:
-        this.effects.blackout = true;
+        this.effects.blackoutTicks = 383;
         break;
       case 1:
         this.finish(1);
         break;
       case 2:
-        this.pockets[this.pockets.indexOf(null)] = 26;
+        if (this.pockets.includes(null)) {
+          this.pockets[this.pockets.indexOf(null)] = 26;
+          this.points(500);
+        }
         break;
       case 3:
         this.effects.toiletFilm = this.room.id;
+        this.points(500);
         break;
       case 4:
         this.player.type = 34;
@@ -559,70 +620,105 @@ export class World {
         break;
       case 6:
         this.effects.carpet = this.room.id;
+        this.points(500);
         break;
       case 7:
         this.finish(2);
         break;
       case 8:
-        this.wee = 70;
-        this.drunk = 85;
+        this.increaseMeter("wee", 70 - this.wee);
+        this.increaseMeter("drunk", 86 - this.drunk);
         break;
       case 9:
         this.effects.drilledToilet = this.room.id;
+        this.points(500);
+        this.effects.gluedToilet = this.room.id;
+        this.points(500);
         break;
       case 10:
         this.effects.gluedToilet = this.room.id;
+        this.points(500);
         break;
       case 11:
         this.effects.chairPin = this.room.id;
+        this.points(500);
         break;
       case 12:
-        this.fart = 65;
+        this.increaseMeter("fart", 66 - this.fart);
         break;
       case 13:
         this.reset();
+        this.rebooted = true;
         break;
       case 14:
-        this.pockets[this.pockets.indexOf(null)] = 91;
-        break;
-      case 15:
-        for (const a of this.visibleActors) {
-          a.mapCell = this.data.map.findIndex(
-            (id) => id && id !== this.room.id,
-          );
-          a.room = this.data.map[a.mapCell];
-          a.positionSaved = false;
+        this.points(250);
+        if (this.pockets.includes(null)) {
+          this.pockets[this.pockets.indexOf(null)] = 91;
+          this.points(500);
         }
         break;
+      case 15:
+        this.increaseMeter("smell", 85 - this.smell);
+        this.fleeGuests();
+        this.points(500);
+        break;
       case 16:
-        this.effects.hidden = true;
+        this.fleeGuests();
+        this.points(500);
         break;
       case 17:
         this.effects.stereo = true;
         break;
       case 18:
+        this.points(-10 * this.smell);
         this.smell = 0;
         break;
       case 19:
         this.effects.hole = this.room.id;
+        this.points(500);
         break;
       case 20:
         this.effects.rake = this.room.id;
+        this.points(500);
         break;
       case 21:
         break;
       case 22:
         this.effects.whoopee = this.room.id;
+        this.points(500);
         break;
     }
   }
   finish(reason) {
-    this.end = reason;
+    if (!this.end) {
+      this.end = reason;
+      if (reason === 4 || reason === 5) this.menu = null;
+      this.ending = {
+        stage: 0,
+        reason,
+        title: GAMEPLAY.endings[reason],
+        rating: GAMEPLAY.ratings[this.rating],
+        score: this.score,
+        victory: reason === 5 ? GAMEPLAY.victory : [],
+      };
+    }
   }
   fartAction() {
-    if (!this.fart) return;
-    this.fart = 0;
-    this.smell = Math.min(85, this.smell + 10);
-    this.points(30);
+    const amount = this.fart;
+    if (!amount) return;
+    this.soundCaption(1);
+    for (let n = 0; n < amount; n++) {
+      this.fart--;
+      this.increaseMeter("smell", 2);
+      this.points(3);
+    }
+    if (this.smell === 85) {
+      this.fleeGuests();
+      this.points(500);
+    }
+    if ([3, 4, 7].includes(this.room.id)) {
+      this.soundCaption(13);
+      this.finish(4);
+    }
   }
 }

@@ -1,6 +1,6 @@
-# Recovery status — milestone 0.1
+# Recovery status — native version 1.0
 
-Evidence comes from the supplied binary, not a substitute release. This is an incomplete playable reconstruction.
+Evidence comes from the supplied binary, not a substitute release. The decoded game systems are implemented as a native JavaScript reconstruction; comparison coverage and presentation limits are described below.
 
 ## Input identity
 
@@ -79,6 +79,8 @@ These are descriptive recovery labels, not original source names.
 
 All 14 room types were loaded through the original room loader and composed through the original renderer at views 0/4/8/12. The native version matches their visible 192×56 areas: 56 fixtures, 75,264 bytes, zero differences. Two hidden columns are excluded because the original treats them as scratch and crops them on display copy. Fixtures exercise sprite masks, mirrors, NPC heads, draw ordering, doors and floors. Original entity records and expected hashes are published, not raw memory.
 
-This does not establish all-frame rendering parity, exact timing, matching random streams during gameplay, all guest transitions, all effects, all endings or sound fidelity. Further state-trajectory comparisons remain necessary.
+These static fixtures establish their compositor output. Additional state comparisons now cover guest trajectories and traps, all decoded basic actions, ground specials and guest/furniture contexts, as detailed in [full-game verification](full-game-verification.md). They do not exhaust every possible action ordering, establish all-frame renderer parity or prove exact hardware timing/audio.
 
-Browser additions: surrounding controls, touch buttons, arrow-key aliases, Escape to close menus and scrolling long option lists. Artwork stays at 256×192 with nearest-neighbour display scaling. No generated replacement art is used.
+Browser additions include standard gamepad/touch controls, readable action panels, pause/reset, a photoreal splash, complete fourteen-room photographic coverage and an optional unified isometric camera. Photoreal Isometric is the fresh-start default. Original Split retains its 256×192 compositor and recovered movement semantics.
+
+The native guest scheduler matches 12,642 original states in 42 room/seed scenarios. Three additional 1,500-update trap scenarios match consumption, status recovery, occupancy, rating and score. All 189 decoded basic item actions, 32 ground specials, 74 guest/furniture contexts and 22 returning callbacks have original-outcome comparisons. The machine-reset callback maps to an application restart. All five ending reasons, seventeen ratings and the final cat sequence are present.

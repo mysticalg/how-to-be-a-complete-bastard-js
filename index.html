@@ -38,8 +38,8 @@
             </button>
           </div>
           <div class="presentation-controls">
-            <button id="camera" data-action="camera">View: Split</button
-            ><button id="style" data-action="style">Art: Original</button>
+            <button id="camera" data-action="camera">View: Isometric</button
+            ><button id="style" data-action="style">Art: Photoreal</button>
           </div>
           <div id="menu-reader" role="status" aria-live="polite" hidden>
             <p id="menu-title"></p>
@@ -110,13 +110,14 @@
         </section>
       </div>
       <details class="about">
-        <summary>About this recovery milestone</summary>
+        <summary>About this reconstruction</summary>
         <p>
-          This is an incomplete native JavaScript reconstruction, without an
-          emulator. The original renderer has passed comparisons for 14 rooms
-          and four views. Guest AI, effects, scoring and endings remain under
-          verification. New presentation modes share the same recovered game
-          state; inferred geometry and photoreal coverage are documented.
+          A native JavaScript reconstruction with guest behaviour, item effects,
+          scoring, ratings and endings. Photoreal Isometric covers all fourteen
+          rooms; Original Split remains available. The isometric architecture
+          and generated appearances are interpretations of the recovered
+          layouts. Verification coverage and sound/timing limitations are
+          documented.
         </p>
         <p>
           <a href="docs/recovery-status.md">Recovery status</a> ·
@@ -127,6 +128,24 @@
       </details>
       <p id="status" role="status">Loading recovered artwork…</p>
     </main>
-    <script type="module" src="src/main.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "./src/audio.js": "./src/audio.js?v=1.0.0",
+          "./src/controller.js": "./src/controller.js?v=1.0.0",
+          "./src/gameplay-data.js": "./src/gameplay-data.js?v=1.0.0",
+          "./src/guests.js": "./src/guests.js?v=1.0.0",
+          "./src/hud.js": "./src/hud.js?v=1.0.0",
+          "./src/input.js": "./src/input.js?v=1.0.0",
+          "./src/isometric.js": "./src/isometric.js?v=1.0.0",
+          "./src/main.js": "./src/main.js?v=1.0.0",
+          "./src/movement.js": "./src/movement.js?v=1.0.0",
+          "./src/photo-actors.js": "./src/photo-actors.js?v=1.0.0",
+          "./src/renderer.js": "./src/renderer.js?v=1.0.0",
+          "./src/world.js": "./src/world.js?v=1.0.0"
+        }
+      }
+    </script>
+    <script type="module" src="src/main.js?v=1.0.0"></script>
   </body>
 </html>

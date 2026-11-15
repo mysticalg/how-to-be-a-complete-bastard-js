@@ -1,0 +1,482 @@
+[
+  {
+    "item": 4,
+    "initialDrunk": 50,
+    "score": 1,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 6,
+    "initialDrunk": 50,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 23,
+    "initialDrunk": 50,
+    "score": 1,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 24,
+    "initialDrunk": 50,
+    "score": 8,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 31,
+    "initialDrunk": 50,
+    "score": -38,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      47,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 35,
+    "initialDrunk": 50,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 37,
+    "initialDrunk": 50,
+    "score": -92,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 38,
+    "initialDrunk": 50,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      114,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 39,
+    "initialDrunk": 50,
+    "score": 20,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      114,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 40,
+    "initialDrunk": 50,
+    "score": 16,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 41,
+    "initialDrunk": 50,
+    "score": 32,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 42,
+    "initialDrunk": 9,
+    "score": 22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 45,
+    "initialDrunk": 50,
+    "score": -78,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      114,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 46,
+    "initialDrunk": 50,
+    "score": 21,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 47,
+    "initialDrunk": 50,
+    "score": 21,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 48,
+    "initialDrunk": 50,
+    "score": 9,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 49,
+    "initialDrunk": 50,
+    "score": 14,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 50,
+    "initialDrunk": 9,
+    "score": 31,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      36,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 59,
+    "initialDrunk": 50,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 60,
+    "initialDrunk": 50,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 61,
+    "initialDrunk": 50,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 62,
+    "initialDrunk": 50,
+    "score": 19,
+    "fart": 13,
+    "wee": 70,
+    "drunk": 85,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 75,
+    "initialDrunk": 50,
+    "score": 11,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      76,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 77,
+    "initialDrunk": 50,
+    "score": 23,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  },
+  {
+    "item": 83,
+    "initialDrunk": 50,
+    "score": 21,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 85,
+    "initialDrunk": 50,
+    "score": 14,
+    "fart": 65,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 86,
+    "initialDrunk": 50,
+    "score": 33,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 3
+  },
+  {
+    "item": 90,
+    "initialDrunk": 9,
+    "score": 771,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 9,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      91,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 92,
+    "initialDrunk": 50,
+    "score": 13,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 95,
+    "initialDrunk": 50,
+    "score": -54,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 0,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 101,
+    "initialDrunk": 50,
+    "score": -22,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 0
+  },
+  {
+    "item": 104,
+    "initialDrunk": 50,
+    "score": -40,
+    "fart": 13,
+    "wee": 11,
+    "drunk": 50,
+    "smell": 7,
+    "location": 255,
+    "pockets": [
+      null,
+      null
+    ],
+    "end": 1
+  }
+]

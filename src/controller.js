@@ -9,12 +9,13 @@ export class GameControls {
     this.canvas = canvas;
     this.playing = false;
     this.paused = false;
+    this.pauseChoice = 0;
     this.selection = 0;
     this.history = [];
     this.previousMenu = null;
     this.pendingInteract = false;
-    this.presentation = "split";
-    this.art = "original";
+    this.presentation = "isometric";
+    this.art = "photoreal";
     this.sound = false;
     this.motion = new IsometricMotion(world);
     this.input = new InputHub({
@@ -62,6 +63,7 @@ export class GameControls {
   }
   pause(value = !this.paused, reason = "Paused") {
     this.paused = value;
+    if (value) this.pauseChoice = 0;
     this.pauseReason = value ? reason : "";
     this.frozenVisual = value ? this.motion.sample() : null;
     this.pendingInteract = false;
@@ -114,11 +116,29 @@ export class GameControls {
       return;
     }
     if (this.paused) {
-      if (action === "interact" || action === "cancel") this.pause(false);
+      if (action === "up") this.pauseChoice = 0;
+      if (action === "down") this.pauseChoice = 1;
+      if (action === "interact" && this.pauseChoice === 1) {
+        this.world.menu = null;
+        this.world.end = 0;
+        this.world.finish(6);
+        this.world.ending.stage = 1;
+        this.pause(false);
+      } else if (action === "interact" || action === "cancel")
+        this.pause(false);
+      else this.draw();
       return;
     }
+    if (this.world.effects.blackoutTicks) return;
     if (this.world.end && !this.world.menu) {
-      if (action === "interact") this.start();
+      if (action === "interact") {
+        this.world.ending.stage++;
+        if (this.world.ending.stage > (this.world.end === 5 ? 3 : 1)) {
+          this.playing = false;
+          this.input.clear();
+          this.draw();
+        } else this.draw();
+      }
       return;
     }
     if (this.world.menu) {
@@ -161,6 +181,12 @@ export class GameControls {
     this.draw();
   }
   tick() {
+    if (this.assetsLoading) return;
+    if (this.playing && !this.paused && this.world.effects.blackoutTicks) {
+      this.world.tick();
+      this.draw();
+      return;
+    }
     if (!this.playing || this.paused || this.world.menu || this.world.end)
       return;
     const direction = this.input.direction();
@@ -212,13 +238,28 @@ export class GameControls {
       this.presentation === "isometric" ? "Camera ↺" : "View 2 ↻";
     const menu = this.world.menu,
       reader = document.querySelector("#menu-reader");
-    reader.hidden = !menu && !this.paused;
+    reader.hidden =
+      !!this.world.effects.blackoutTicks ||
+      !this.playing ||
+      (!menu && !this.paused && !this.world.end);
     const title = this.paused
       ? this.pauseReason
-      : menu?.title || "Choose an action";
+      : this.world.end
+        ? this.world.ending.stage === 0
+          ? this.world.ending.title
+          : this.world.ending.stage === 1
+            ? "ADRIAN SAYS YOUR RATING IS: " + this.world.ending.rating
+            : this.world.ending.stage === 2
+              ? "ADRIAN FEELS YOU'RE READY TO SEE A REAL PUSSY....."
+              : "HA HA HA........."
+        : menu?.title || "Choose an action";
     const selected = this.paused
-      ? "Press A / Start or tap Resume"
-      : menu?.options[this.selection]?.label || "";
+      ? this.pauseChoice
+        ? "END THE PARTY AND SEE YOUR RATING"
+        : "RESUME / down to end the party"
+      : this.world.end
+        ? `Bastard points: ${this.world.score}. A / Action to continue.`
+        : menu?.options[this.selection]?.label || "";
     document.querySelector("#menu-title").textContent = title;
     document.querySelector("#menu-choice").textContent = selected;
     document.querySelector("#menu-position").textContent =

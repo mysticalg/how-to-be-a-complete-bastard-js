@@ -1,0 +1,254 @@
+[
+  {
+    "room": 1,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "2707525064418627cc978ed916ae0bc64026911a58b7319186d44038b96fba97"
+  },
+  {
+    "room": 1,
+    "seed": 1,
+    "states": 301,
+    "sha256": "48640c01677fbd29512067c5a84ce70c9edf2f51980e2e1a3542487492cedcd5"
+  },
+  {
+    "room": 1,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "4356bf6e8bae0732d92f659699c5d57f3e2a39cecdfa11e599936a9e242d03a0"
+  },
+  {
+    "room": 2,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "d20d81a3261f54a1e168233fcc393acd661d4db25ab68b0a8ec300460ec5d5c3"
+  },
+  {
+    "room": 2,
+    "seed": 1,
+    "states": 301,
+    "sha256": "e8e417ccac310ecfc75fa01535f3ad77d247382711f6b85b9c2d29487cd6261c"
+  },
+  {
+    "room": 2,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "7348bb8003883f38c105e998be3a06fbcfe72e889986106deeacfd833a549fba"
+  },
+  {
+    "room": 3,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "e0109fe9506706cd03d546cd1beddaee1cb1d5588384f65ea9bf93c6f7937c4d"
+  },
+  {
+    "room": 3,
+    "seed": 1,
+    "states": 301,
+    "sha256": "8fe8258d91cfd71311d0db2fd2e6d6f6b9926250f77dc7ee8d542a94f62dc6b8"
+  },
+  {
+    "room": 3,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "c813aeb57c71590e4d20712c427b67b812775789c10cc64323bf14f8af9b6c1b"
+  },
+  {
+    "room": 4,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "81ee862ff6be7eb29c7531b8c1a0363fafb0a1f44e8e56e0c321e6114808ca8f"
+  },
+  {
+    "room": 4,
+    "seed": 1,
+    "states": 301,
+    "sha256": "53929233e99306eedb5813b5dfc9555a3bdcdbf20bd7554efa036117a5be5ab1"
+  },
+  {
+    "room": 4,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "b61aec828d49813dc3db9925b7f7aa4ced15185fabec18b7f1127a2e6ea8b5a3"
+  },
+  {
+    "room": 5,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "d1f8d9a286c584c7d3b6967742cfe3c368a8f5c53b35017b0895702e24957ca4"
+  },
+  {
+    "room": 5,
+    "seed": 1,
+    "states": 301,
+    "sha256": "b58e2a2eae419446b09dfda09d8f1f91f95467e46cf41361603b806b2581eb12"
+  },
+  {
+    "room": 5,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "b063d60b70f6325b770beb1ddd41fdadcc5b5c04938ec09275e70af85d561be0"
+  },
+  {
+    "room": 6,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "2d0c5b0741379f81503270bd69ab4ee8fd1ce897205de6d2dcab1e09244204fb"
+  },
+  {
+    "room": 6,
+    "seed": 1,
+    "states": 301,
+    "sha256": "7c8e0d9c3df1bf4e2fb50ee95fc5f3ec12338c3d48db81743378ff3c6f09469c"
+  },
+  {
+    "room": 6,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "55078def399948ae47627f17468401de98a1dde17f4034b4518b97fd02aea0e5"
+  },
+  {
+    "room": 7,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "5b49ff82ca6bf2f7546d753025c3708bb57bf164fbc7a68b55f859c21ad90173"
+  },
+  {
+    "room": 7,
+    "seed": 1,
+    "states": 301,
+    "sha256": "7f4caf5dd5c450f8ee13fea434b3691c36d5c40e1b8c5fd661f9d0aa79787b48"
+  },
+  {
+    "room": 7,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "46f565aeaa1cc3c73078debc1443e95cdf65a8374d01777a21ab30d90f3e744f"
+  },
+  {
+    "room": 8,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "f0daf811d72ed7453a5554c3871cf4dd168c3671a7383539a483a8fa0c7eda06"
+  },
+  {
+    "room": 8,
+    "seed": 1,
+    "states": 301,
+    "sha256": "641e3156bbfa9191d0bd676756c92509c0abd52e88e6450f878903f66318b41c"
+  },
+  {
+    "room": 8,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "2c6db1d6e0edec36c064aaa2c352db470391d33b8df655967c842b2b72bdb684"
+  },
+  {
+    "room": 9,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "b670cd0af74abf2dfb522b7f069419a16df10add500c2a2c2e3e616725be0623"
+  },
+  {
+    "room": 9,
+    "seed": 1,
+    "states": 301,
+    "sha256": "8d458723250a0656574586033b40ac890506209c328537f296b6b9146589ad28"
+  },
+  {
+    "room": 9,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "1476117ee287b01091bf782df4e899f90383b342c06e14e0181f6810b99fc219"
+  },
+  {
+    "room": 10,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "26b0a00cd0bccccc567dbfe0433269c907c78aba8c4a06ea5d4649dc830c742d"
+  },
+  {
+    "room": 10,
+    "seed": 1,
+    "states": 301,
+    "sha256": "d73902b744d249ab62cd3803ab26eacd08d17ad7e9f06e6aa20d9180708c6d8c"
+  },
+  {
+    "room": 10,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "871aeaa060e6f3c966693aba4a1a0b8af40e4098c7fb1e9dc340b096ce3cf533"
+  },
+  {
+    "room": 11,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "45e6df77afb20592ca30fa5e3b2118e6563baf343d669dceb2883249f0bde65d"
+  },
+  {
+    "room": 11,
+    "seed": 1,
+    "states": 301,
+    "sha256": "4fc6e40042c73a22748d68a7945ce7dd4ed93a9f4822c8b6e565a7ef41b57b93"
+  },
+  {
+    "room": 11,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "235be2e03aa6b244d1bcbe807713f67f09f926c0049ff3fc826a8d9143899fe3"
+  },
+  {
+    "room": 12,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "781c4c75953789c01dcbd40eaff310322de2ead0b785cde97d9fc45f04801080"
+  },
+  {
+    "room": 12,
+    "seed": 1,
+    "states": 301,
+    "sha256": "23e430f4d4636505c8dd9fed7592fbf1aab4082fdf3426422ff520b40f366d2f"
+  },
+  {
+    "room": 12,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "2ae2193da918659e0bb901650f29675e8356ceb6ca53e22648f4bc919e62634e"
+  },
+  {
+    "room": 13,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "e4e2b34f7e6cfd5ef96ab5a2c57a8fbe48534198110f2fb269abac91bf249185"
+  },
+  {
+    "room": 13,
+    "seed": 1,
+    "states": 301,
+    "sha256": "736fee2ebfbb627c037826950b9eee8ee9fa2e513bd9aae9b4c50f62b246e77e"
+  },
+  {
+    "room": 13,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "ca5e7453ad16ca25c706d8f92097a6615714b01b2eef10711c485e5187dc043e"
+  },
+  {
+    "room": 14,
+    "seed": 29809,
+    "states": 301,
+    "sha256": "5ffa7c6ae689e699f546bdcab98b26c03ac7da0cc1c82efd073f512173209866"
+  },
+  {
+    "room": 14,
+    "seed": 1,
+    "states": 301,
+    "sha256": "05716f9d2f0e414647fc7857f7246db9ca764faae505444bdc990feac9389693"
+  },
+  {
+    "room": 14,
+    "seed": 57005,
+    "states": 301,
+    "sha256": "0cfa4a6acb8cc8d03a23fd0680e13b4a98f4ffa026ff264b8192b6d5f893bf69"
+  }
+]
